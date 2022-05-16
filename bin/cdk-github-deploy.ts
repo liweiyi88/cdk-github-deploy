@@ -17,7 +17,7 @@ const pipeline = new GitHubWorkflow(app, 'Pipeline', {
       'npx cdk synth'
     ]
   }),
-  gitHubActionRoleArn: 'arn:aws:iam::722141136946:role/GitHubActionRole'
+  gitHubActionRoleArn: `arn:aws:iam::${primaryEnv.account}:role/GitHubActionRole`
 })
 
 pipeline.addStage(new AppStage(app, 'Dev', {

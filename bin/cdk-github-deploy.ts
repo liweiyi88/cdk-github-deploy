@@ -7,8 +7,8 @@ import { ShellStep } from 'aws-cdk-lib/pipelines'
 
 const app = new cdk.App();
 
-const devEnv = {account: '722141136946', region: 'ap-southeast-2'}
-const prodEnv = {account: '354334841216', region: 'ap-southeast-2'}
+const primaryEnv = {account: process.env.PRIMARY_ACCOUNT, region: 'ap-southeast-2'}
+const secondaryEnv = {account: process.env.SECONDARY_ACCOUNT, region: 'ap-southeast-2'}
 
 const pipeline = new GitHubWorkflow(app, 'Pipeline', {
   synth: new ShellStep('Build', {
@@ -17,15 +17,15 @@ const pipeline = new GitHubWorkflow(app, 'Pipeline', {
       'npx cdk synth'
     ]
   }),
-  gitHubActionRoleArn: 'arn:aws:iam::722141136946:role/GitHubActionRole'
+  gitHubActionRoleArn: `arn:aws:iam::${primaryEnv.account}:role/GitHubActionRole`
 })
 
 pipeline.addStage(new AppStage(app, 'Dev', {
-  env: devEnv
+  env: primaryEnv
 }))
 
 pipeline.addStage(new AppStage(app, 'Prod', {
-  env: prodEnv
+  env: secondaryEnv
 }))
 
 app.synth()

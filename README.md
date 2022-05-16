@@ -1,15 +1,15 @@
 # Bootstrap
 ## Bootstrap your primary aws account
-`AWS_PROFILE=cmdlab-sandpit1 npx cdk bootstrap --qulifier ghdeploy aws://722141136946/ap-southeast-2 --trust-for-lookup 354334841216 --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess`
+`AWS_PROFILE=cmdlab-sandpit1 npx cdk bootstrap --qualifier ghdeploy aws://722141136946/ap-southeast-2 --trust-for-lookup 354334841216 --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess`
+
 ## Bootstrap your secondary aws account
-`AWS_PROFILE=cmdlab-sandpit2 npx cdk bootstrap --qulifier ghdeploy aws://354334841216/ap-southeast-2 --trust 722141136946 --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess`
+`AWS_PROFILE=cmdlab-sandpit2 npx cdk bootstrap --qualifier ghdeploy aws://354334841216/ap-southeast-2 --trust 722141136946 --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess`
+
 ## Configure cdk.json
-Put 
-`"@aws-cdk/core:bootstrapQualifier": "ghdeploy",` in the context section. The `cdk.json` file tells the CDK Toolkit how to execute your app.
+Add `"@aws-cdk/core:bootstrapQualifier": "ghdeploy",` in the context section. The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 # Github OIDC Role
 ## Create Identity providers
-
 
 1. Create IAM Policy `CDKDeployPermissionPolicy`
 ```

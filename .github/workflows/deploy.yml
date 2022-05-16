@@ -20,7 +20,7 @@ jobs:
       - name: Build
         run: |-
           npm install
-          npm build
+          npm run build
       - name: Upload cdk.out
         uses: actions/upload-artifact@v2.1.1
         with:

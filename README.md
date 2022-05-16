@@ -1,22 +1,24 @@
 # Bootstrap
-## Bootstrap your primary aws account
+### 1. Bootstrap your primary aws account
 ```
 AWS_PROFILE=cmdlab-sandpit1 npx cdk bootstrap --qualifier ghdeploy aws://[primary-account-id]/ap-southeast-2 --trust-for-lookup [second-account-id] --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess
 ```
-## Bootstrap your secondary aws account
+### 2. Bootstrap your secondary aws account
 ```
 AWS_PROFILE=cmdlab-sandpit2 npx cdk bootstrap --qualifier ghdeploy aws://[second-account-id]/ap-southeast-2 --trust [primary-account-id] --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess
 ```
-## Configure cdk.json
+### 3. Configure cdk.json
 Add `"@aws-cdk/core:bootstrapQualifier": "ghdeploy",` in the context section. The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 # Github OIDC Role
 You only need to create the role in your primary AWS account.
 
-## Create Identity providers
+### 1. Create Identity providers
+see [github-oidc-for-aws](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) for more details.
 ![CreateIdentityProvider](doc/create_identity_provider.png)
 
-## Create IAM Policy `CDKDeployPermissionPolicy`
+### 2. Create IAM Policy `CDKDeployPermissionPolicy`
+see [minimal policies required by cdk-pipelines-github](https://github.com/cdklabs/cdk-pipelines-github/blob/main/GITHUB_ACTION_ROLE_SETUP.md#manually-set-up-the-github-action-role) for more details
 ![Create IAM Policy](doc/create_iam_policy.png)
 ```
 {
@@ -45,13 +47,14 @@ You only need to create the role in your primary AWS account.
     ]
 }
 ```
-## Create the `GitHubActionRole` role
+
+### 3. Create the `GitHubActionRole` role
 Choose web identity
 ![CreateIAMRole1](doc/create_iam_role1.png)
 Attach the policy
 ![CreateIAMRole2](doc/create_iam_role2.png)
 
-## 3. Edit `GitHubActionRole` Role's trust policy 
+### 4. Edit `GitHubActionRole` Role's trust policy 
 ```
 {
     "Version": "2012-10-17",

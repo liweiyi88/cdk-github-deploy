@@ -1,11 +1,11 @@
 # Bootstrap
 ### 1. Bootstrap your primary aws account
 ```
-AWS_PROFILE=cmdlab-sandpit1 npx cdk bootstrap --qualifier ghdeploy aws://[primary-account-id]/ap-southeast-2 --trust-for-lookup [second-account-id] --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess
+AWS_PROFILE=cmdlab-sandpit1 npx cdk bootstrap --toolkit-stack-name gh-deploy --qualifier ghdeploy aws://[primary-account-id]/ap-southeast-2 --trust-for-lookup [second-account-id] --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess
 ```
 ### 2. Bootstrap your secondary aws account
 ```
-AWS_PROFILE=cmdlab-sandpit2 npx cdk bootstrap --qualifier ghdeploy aws://[second-account-id]/ap-southeast-2 --trust [primary-account-id] --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess
+AWS_PROFILE=cmdlab-sandpit2 npx cdk bootstrap --toolkit-stack-name gh-deploy --qualifier ghdeploy2 aws://[second-account-id]/ap-southeast-2 --trust [primary-account-id] --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess
 ```
 ### 3. Configure cdk.json
 Add `"@aws-cdk/core:bootstrapQualifier": "ghdeploy",` in the context section. The `cdk.json` file tells the CDK Toolkit how to execute your app.

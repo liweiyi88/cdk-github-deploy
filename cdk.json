@@ -17,7 +17,7 @@
     ]
   },
   "context": {
-    "@aws-cdk/core:bootstrapQualifier": "ghdeploy",
+    "@aws-cdk/core:bootstrapQualifier": "ghdep",
     "@aws-cdk/aws-apigateway:usagePlanKeyOrderInsensitiveId": true,
     "@aws-cdk/core:stackRelativeExports": true,
     "@aws-cdk/aws-rds:lowercaseDbIdentifier": true,

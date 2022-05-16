@@ -14,7 +14,7 @@ const pipeline = new GitHubWorkflow(app, 'Pipeline', {
   synth: new ShellStep('Build', {
     commands: [
       'npm install',
-      'npm build'
+      'npm run build'
     ]
   }),
   gitHubActionRoleArn: 'arn:aws:iam::722141136946:role/GitHubActionRole'

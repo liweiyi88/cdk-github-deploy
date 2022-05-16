@@ -7,7 +7,7 @@ export class CdkGithubDeployStack extends Stack {
     super(scope, id, props);
 
     new StringParameter(this, 'GithubParam', {
-      parameterName: 'gh-deploy',
+      parameterName: '/gh-deploy',
       stringValue: 'julian-test'
     })
   }

@@ -1,3 +1,8 @@
+# Deployment goals
+1. Cross-account deployment
+2. Deploy from CI/CD
+3. Manual approval
+
 # Bootstrap
 ### 1. Bootstrap your primary aws account
 ```

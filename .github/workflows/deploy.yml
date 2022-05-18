@@ -123,6 +123,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
+    environment: prod
     needs:
       - Build-Build
       - Assets-FileAsset2

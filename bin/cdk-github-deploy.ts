@@ -24,8 +24,10 @@ pipeline.addStage(new AppStage(app, 'Dev', {
   env: primaryEnv
 }))
 
-pipeline.addStage(new AppStage(app, 'Prod', {
-  env: secondaryEnv
-}))
+pipeline.addStageWithGitHubOptions(new AppStage(app, 'Prod', {
+  env: secondaryEnv,
+}), {
+  gitHubEnvironment: 'prod'
+})
 
 app.synth()

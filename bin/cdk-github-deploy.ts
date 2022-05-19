@@ -30,4 +30,28 @@ pipeline.addStageWithGitHubOptions(new AppStage(app, 'Prod', {
   gitHubEnvironment: 'prod'
 })
 
+
+// const prodPipeline = new GitHubWorkflow(app, 'Prod-Pipeline', {
+//   workflowPath: '.github/workflows/prod-deploy.yml',
+//   workflowTriggers: {
+//     push: {
+//       branches: ['main'],
+//       tags: ['*']
+//     }
+//   },
+//   synth: new ShellStep('Build', {
+//     commands: [
+//       'npm ci',
+//       'npx cdk synth'
+//     ]
+//   }),
+//   gitHubActionRoleArn: `arn:aws:iam::${primaryEnv.account}:role/GitHubActionRole`
+// })
+//
+// prodPipeline.addStageWithGitHubOptions(new AppStage(app, 'Prod', {
+//   env: secondaryEnv,
+// }), {
+//   gitHubEnvironment: 'prod'
+// })
+
 app.synth()
